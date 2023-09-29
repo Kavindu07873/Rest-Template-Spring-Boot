@@ -38,22 +38,10 @@ public class apiServiceImpl implements apiService {
 
             System.out.println(formData);
 
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//            headers.setContentType(MediaType.APPLICATION_JSON);
-//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//            headers.setAccept(Arrays.asList(MediaType.APPLICATION_FORM_URLENCODED));
-//            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//            headers.setContentType(MediaType.APPLICATION_JSON);
-//            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//            headers.setBasicAuth("B2B_USER", "");
-//            headers.set("username" , username);
-
 
 //            HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(formData, headers);
             HttpEntity <Map> requestEntity  = new HttpEntity<>(formData,gethttpHeaders());
 
-//            System.out.println(headers);
             System.out.println(baseUrl);
             System.out.println(requestEntity);
 
@@ -73,9 +61,9 @@ public class apiServiceImpl implements apiService {
 //            System.out.println(response.getStatusCodeValue());
             System.out.println("--------------------");
 
+            System.out.println(response.getBody().get("user"));
 
-
-            return response.getBody();
+            return (Map<String, Object>) response.getBody().get("user");
             
            
 //            val response  =  restTemplate.exchange(baseUrl , HttpMethod.POST ,requestEntity,Map.class); ;
@@ -110,6 +98,8 @@ public class apiServiceImpl implements apiService {
         }
         return null;
         }
+
+
     private HttpHeaders gethttpHeaders(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
